@@ -15,8 +15,8 @@ public class Story {
 	private Chapter chapter;
 	private Integer quete;
 	
-	public Story getStory(){
-		final File file = new File(new File(Main.getInstance().getDataFolder(), "/story/"), getUuid().toString() + ".json");
+	public Story getStory(UUID uuid){
+		final File file = new File(new File(Main.getInstance().getDataFolder(), "/story/"), uuid.toString() + ".json");
 		
 		if(file.exists()){
 			final StorySerializeManager hsm = new StorySerializeManager();	
@@ -24,11 +24,11 @@ public class Story {
 			final Story recipelist = hsm.deserialize(json);	
 			return recipelist;
 		}else{
-			Story r = new Story(getUuid());
+			Story r = new Story(uuid);
 			return r; 
 		}
 	}
-	//Utiliser la methode getStory, ne pas utiliser ce constructeur séparement
+	//Utiliser la methode getStory, ne pas utiliser ce constructeur sÃ©parement
 	public Story(UUID uuid) {
 		setUuid(uuid);
 		setChapter(Chapter.one);
