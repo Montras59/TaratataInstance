@@ -4,10 +4,6 @@ import java.io.File;
 import java.util.UUID;
 
 import fr.doctorwho.Main;
-import fr.sekori.chouettopia.api.Chouettopia;
-import fr.sekori.chouettopia.api.FileUtils;
-import fr.sekori.chouettopia.history.Story;
-import fr.sekori.chouettopia.history.StorySerializeManager;
 
 public class Story {
 
