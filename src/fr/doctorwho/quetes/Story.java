@@ -15,7 +15,7 @@ public class Story {
 	private Chapter chapter;
 	private Integer quete;
 	
-	public Story getStory(UUID uuid){
+	public static Story getStory(UUID uuid){
 		final File file = new File(new File(Main.getInstance().getDataFolder(), "/story/"), uuid.toString() + ".json");
 		
 		if(file.exists()){
