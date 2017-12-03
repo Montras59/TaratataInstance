@@ -24,7 +24,8 @@ public class Story {
 			return r; 
 		}
 	}
-	//Utiliser la methode getStory, ne pas utiliser ce constructeur séparement
+
+	//Utiliser la methode getStory, ne pas utiliser ce constructeur s�parement
 	public Story(UUID uuid) {
 		setUuid(uuid);
 		setChapter(Chapter.one);
