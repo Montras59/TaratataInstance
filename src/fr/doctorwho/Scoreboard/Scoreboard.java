@@ -1,4 +1,4 @@
-package fr.attila46.Scoreboard;
+package fr.doctorwho.Scoreboard;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -7,7 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import fr.attila46.Main.Main;
 import net.md_5.bungee.api.ChatColor;
 
 public class Scoreboard {
@@ -42,32 +41,32 @@ public class Scoreboard {
 	public void updatePlayerScoreboard(Player p){
 		ScoreboardSign sc = boards.get(p);
 		HashMap<Integer,String> lignes = new HashMap<>();
-		lignes.put(0,"§a");
-		lignes.put(2, "§b");
+		lignes.put(0,"Â§a");
+		lignes.put(2, "Â§b");
 		for(Entry<Integer, String> ligne: lignes.entrySet()){
 			sc.setLine(ligne.getKey(), ligne.getValue());
 		}
 	}
 	public boolean createPlayerScoreboard(Player p){
 		if(!boards.containsKey(p)){
-			ScoreboardSign scoreboard = new ScoreboardSign(p, ChatColor.AQUA+"§lDoctorWhoRP");
+			ScoreboardSign scoreboard = new ScoreboardSign(p, ChatColor.AQUA+"Â§lDoctorWhoRP");
 			scoreboard.create();
 			String[] lignes = {
-					"§a",
-					ChatColor.YELLOW+"§l§nInformation:",
-					"§b",
-					ChatColor.RED+"§lGrade: "+ChatColor.GRAY+"-------",
-					ChatColor.RED+"§lNiveau: "+ChatColor.AQUA+"--",
-					ChatColor.RED+"§lProgression: "+ChatColor.AQUA+"--%",
-					ChatColor.RED+"§lServeur: "+ChatColor.YELLOW+"------",
-					"§c",
-					ChatColor.BLUE+"§lQuête (--):",
-					ChatColor.DARK_AQUA+"§l---------",
-					ChatColor.BLUE+"§lEtape (--/--):",
-					ChatColor.GRAY+"§l---------",
-					ChatColor.GOLD+"§lIncarnation: "+ChatColor.BLUE+"---------",
-					"§d",
-					ChatColor.GREEN+"§lDoctorWhoRP.fr"};
+					"Â§a",
+					ChatColor.YELLOW+"Â§lÂ§nInformation:",
+					"Â§b",
+					ChatColor.RED+"Â§lGrade: "+ChatColor.GRAY+"-------",
+					ChatColor.RED+"Â§lNiveau: "+ChatColor.AQUA+"--",
+					ChatColor.RED+"Â§lProgression: "+ChatColor.AQUA+"--%",
+					ChatColor.RED+"Â§lServeur: "+ChatColor.YELLOW+"------",
+					"Â§c",
+					ChatColor.BLUE+"Â§lQuÃªte (--):",
+					ChatColor.DARK_AQUA+"Â§l---------",
+					ChatColor.BLUE+"Â§lEtape (--/--):",
+					ChatColor.GRAY+"Â§l---------",
+					ChatColor.GOLD+"Â§lIncarnation: "+ChatColor.BLUE+"---------",
+					"Â§d",
+					ChatColor.GREEN+"Â§lDoctorWhoRP.fr"};
 			int i=0;
 			for(String l : lignes){
 				scoreboard.setLine(i, l);
