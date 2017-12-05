@@ -11,6 +11,8 @@ public class Main extends JavaPlugin{
 	
 	// SYSTEM COPY FILE
 	private static QuetesFile quetes;
+	//Scoreboard
+	private Scoreboard scoreboard = new Scoreboard();
 	
 	@Override
 	public void onEnable() {
@@ -23,12 +25,18 @@ public class Main extends JavaPlugin{
 		// File
 		quetes = new QuetesFile();
 		quetes.create();
+		
+		//Scoreboard
+		scoreboard.start();
 	}
 	
 	public static QuetesFile getQuetes(){
 		return quetes;
 	}
-	
+	public void onDisable(){
+		//Scoreboard
+		scoreboard.stop();
+	}
 	public static Main getInstance(){
 		return instance;
 	}
