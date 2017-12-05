@@ -1,4 +1,4 @@
-package fr.attila46.Scoreboard;
+package fr.doctorwho.Scoreboard;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -6,13 +6,11 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import fr.attila46.Main.Main;
-
 public class ScoreBoardEvents implements Listener {
-	private Main main;
+	private Plugin plugin;
 	private Scoreboard sc = new Scoreboard();
-	public ScoreBoardEvents(Main main) {
-		this.main=main;
+	public ScoreBoardEvents(Plugin pl) {
+		this.plugin=pl;
 	}
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e){
