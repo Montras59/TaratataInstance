@@ -1,4 +1,4 @@
-package fr.attila46.Scoreboard;
+package fr.doctorwho.Scoreboard;
 
 
 import java.lang.reflect.Field;
@@ -174,9 +174,9 @@ public class ScoreboardSign {
 		setField(packet, "a", player.getName());
 
 		// Mode
-		// 0 : créer
+		// 0 : crÃ©er
 		// 1 : Supprimer
-		// 2 : Mettre à jour
+		// 2 : Mettre Ã  jour
 		setField(packet, "d", mode);
 
 		if (mode == 0 || mode == 2) {
