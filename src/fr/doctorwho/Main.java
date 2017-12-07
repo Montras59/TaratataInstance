@@ -1,42 +1,35 @@
 package fr.doctorwho;
 
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.doctorwho.Scoreboard.Scoreboard;
 import fr.doctorwho.listener.ListenerManager;
 import fr.doctorwho.quetes.QueteManager;
 
 public class Main extends JavaPlugin{
 
-	private static Main instance;
-	private static QueteManager manager;
-	
-	//Scoreboard
-	private Scoreboard scoreboard = new Scoreboard();
+	public static Plugin instance;
+	public static QueteManager queteManager;
 	
 	@Override
 	public void onEnable() {
 		instance = this;
+		queteManager = new QueteManager(this);
 		
 		// Event
 		ListenerManager listener = new ListenerManager(this);
 		listener.register();
 		
-		manager = new QueteManager(this);
-		
-		//Scoreboard
-		scoreboard.start();
+
 	}
+
 	
-	public void onDisable(){
-		//Scoreboard
-		scoreboard.stop();
-	}
-	public static Main getInstance(){
+	public static Plugin getInstance(){
 		return instance;
 	}
 
 	public static QueteManager getQueteManager() {
-		return manager;
+		return queteManager;
 	}
+
 }
