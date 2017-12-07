@@ -4,6 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
+import fr.doctorwho.Scoreboard.ScoreBoardEvents;
+
 public class ListenerManager {
 
 	Plugin plugin;
