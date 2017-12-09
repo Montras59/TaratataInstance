@@ -2,3 +2,4 @@ main: fr.doctorwho.Main
 name: DoctorWhoInstance
 version: 1.0 alpha
 authors: [Montras,Lasth]
+depend: [DoctorWhoAPI]
