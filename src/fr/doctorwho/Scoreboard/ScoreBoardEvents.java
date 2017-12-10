@@ -18,15 +18,15 @@ public class ScoreBoardEvents implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e){
 		Player p = e.getPlayer();
-		p.sendMessage("§4§lNe pas utiliser ce plugin de test et jouer pendant les tests de celui-ci qui pourraient le faire crach!!! (attila46)");
-		//________________________________Pour les teste en server solo sans connection à la db________________________________
+		//p.sendMessage("Â§4Â§lNe pas utiliser ce plugin de test et jouer pendant les tests de celui-ci qui pourraient le faire crach!!! (attila46)");
+		//________________________________Pour les teste en server solo sans connection Ã  la db________________________________
 		//PlayerSQL ps = new PlayerSQL();
 		//ps.setPseudo(p.getName());
 		//ps.setRank(EnumRank.DEVELOPPEUR);
 		//ps.setUuid(p.getUniqueId().toString());
 		//ps.setID(PlayerSQL.playersql.size());
 		//ps.setCoins(1000);
-		//ps.setQuetes("deso j'ai oublié la quete");
+		//ps.setQuetes("deso j'ai oubliÃ© la quete");
 		//PlayerSQL.playersql.put(p, ps);
 		//_____________________________________________________________________________________________________________________
 		Scoreboard.PlayerUpdate(p);;
