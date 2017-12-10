@@ -1,86 +1,124 @@
-package fr.doctorwho.Scoreboard;
+package fr.attila46.Scoreboard;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scoreboard.NameTagVisibility;
+import org.bukkit.scoreboard.Team;
 
-import fr.doctorwho.Main;
+import fr.attila46.Main.Main;
+import fr.doctorwho.enums.EnumRank;
+import fr.doctorwho.service.PlayerSQL;
 import net.md_5.bungee.api.ChatColor;
 
+
+@SuppressWarnings("deprecation")
 public class Scoreboard {
 	private Plugin pl = Main.getInstance();
 	//stockage des scoreboards de tout les joueur
 	private static HashMap<Player,ScoreboardSign> boards;
-	//constructeur que je n'ai pas utilisÃ©
+	//stockage des Team de grade
+	private static HashMap<String,Team> teamTablist;
+	//stockage des nom de Team
+	private static ArrayList<String> teamNames;
 	public Scoreboard(){
 	}
-	//function pour ajoutÃ© tout les joueur sur le serveur au scoreboard
-	public void start(){
+	//function pour ajouté tout les joueur du serveur au scoreboard et à la tablist 
+	public static void start(){
+		teamTablist = new HashMap<>();
+		teamNames = new ArrayList<>();
+		for(EnumRank r : EnumRank.values()){
+			Team t;
+			String teamName = "TablistRanck"+(r.getPower()*-1);
+			teamNames.add(teamName);
+			t = Bukkit.getScoreboardManager().getNewScoreboard().registerNewTeam(teamName);
+			t.setPrefix(teamName);
+			t.setNameTagVisibility(NameTagVisibility.ALWAYS);
+			teamTablist.put(r.getRankName(), t);
+		}
 		boards = new HashMap<>();
 		for(Player p : Bukkit.getOnlinePlayers()){
 			PlayerScoreboard(p);
 		}
 	}
-	//function pour crÃ©er ou update le scoreboard d'un joueur
-	public void PlayerScoreboard(Player p){
-		if(!boards.containsKey(p)){
-			createPlayerScoreboard(p);
-		}
-		updatePlayerScoreboard(p);
+	//function pour créer ou update le scoreboard et la tablist d'un joueur
+	public static void PlayerUpdate(Player p){
+		PlayerScoreboard(p);
+		PlayerTablist(p);
 	}
-	//function pour dÃ©truire tout les scoreboards
-	public void stop(){
+	//A ENLEVER car il va être ajouté à PlayerSQL!
+	//function pour évité de faire deux fois la même requête à la db
+	public static PlayerSQL getPlayerSQL(Player p){
+		PlayerSQL ps = null;
+		if(PlayerSQL.playersql.containsKey(p)){
+			ps = PlayerSQL.getPlayerSQL(p);
+		}else{
+			ps = PlayerSQL.getPlayerSQL(p);
+			if(ps == null){
+				PlayerSQL.createAccount(p);
+				ps = PlayerSQL.getPlayerSQL(p);
+			}
+		}
+		return ps;
+	}
+	//update le nom d'un joueur dans la tablist
+	public static void PlayerTablist(Player p){
+		PlayerSQL ps = getPlayerSQL(p);
+		EnumRank r = ps.getRank();
+		p.setPlayerListName(r.getRankPrefix()+p.getDisplayName());
+		System.out.println("testRun");
+		Team t = teamTablist.get(r.getRankName());
+		for(String tag : p.getScoreboardTags()){
+			if(teamNames.contains(tag) ){
+				p.removeScoreboardTag(tag);
+			}
+		}
+		p.addScoreboardTag(t.getName());
+	}
+	//function pour détruire tout les scoreboards
+	public static void stop(){
 		for(Entry<Player, ScoreboardSign> p : boards.entrySet()){
 			p.getValue().destroy();
 		}
 		boards.clear();
 	}
-	//function pour dÃ©truire le scoreboard du joueur ciblÃ©
-	public void Disconnecte(Player p){
+	//function pour détruire le scoreboard du joueur ciblé
+	public static void PlayerDisconnecte(Player p){
 		if(boards.containsKey(p)){
 			boards.get(p).destroy();
 			boards.remove(p);
 		}
 	}
-	//function interne update le scoreboard du joueur ciblÃ©
-	private void updatePlayerScoreboard(Player p){
+	//update ou créer le scoreboard d'un joueur
+	public static void PlayerScoreboard(Player p){
+		if(!boards.containsKey(p)){
+			createPlayerScoreboard(p);
+		}
 		ScoreboardSign sc = boards.get(p);
-		HashMap<Integer,String> lignes = new HashMap<>();
-		lignes.put(0,"Â§a");
-		lignes.put(2, "Â§b");
-		for(Entry<Integer, String> ligne: lignes.entrySet()){
+		HashMap<Integer,String> lignes = new HashMap<>(); 
+		lignes.putAll(Translation.getLignes(p));
+		for(Entry<Integer,String> ligne : lignes.entrySet()){
 			sc.setLine(ligne.getKey(), ligne.getValue());
 		}
 	}
-	//function interne crÃ©e le scoreboard du joueur ciblÃ©
-	private void createPlayerScoreboard(Player p){
-		//ScoreboardSign est une api 1.11 que j'ai mi Ã  jour
-		ScoreboardSign scoreboard = new ScoreboardSign(p, ChatColor.AQUA+"Â§lDoctorWhoRP");
-		scoreboard.create();
-		String[] lignes = {
-				"Â§a",
-				ChatColor.YELLOW+"Â§lÂ§nInformation:",
-				"Â§b",
-				ChatColor.RED+"Â§lGrade: "+ChatColor.GRAY+"-------",
-				ChatColor.RED+"Â§lNiveau: "+ChatColor.AQUA+"--",
-				ChatColor.RED+"Â§lProgression: "+ChatColor.AQUA+"--%",
-				ChatColor.RED+"Â§lServeur: "+ChatColor.YELLOW+"------",
-				"Â§c",
-				ChatColor.BLUE+"Â§lQuÃªte (--):",
-				ChatColor.DARK_AQUA+"Â§l---------",
-				ChatColor.BLUE+"Â§lEtape (--/--):",
-				ChatColor.GRAY+"Â§l---------",
-				ChatColor.GOLD+"Â§lIncarnation: "+ChatColor.BLUE+"---------",
-				"Â§d",
-				ChatColor.GREEN+"Â§lDoctorWhoRP.fr"};
-		int i=0;
-		for(String l : lignes){
-			scoreboard.setLine(i, l);
-			i++;
+	//function interne crée le scoreboard du joueur ciblé
+	public static boolean createPlayerScoreboard(Player p){
+		if(!boards.containsKey(p)){
+			ScoreboardSign scoreboard = new ScoreboardSign(p, ChatColor.AQUA+"§lDoctorWhoRP");
+			scoreboard.create();
+			boards.put(p, scoreboard);
+			return true;
 		}
-		boards.put(p, scoreboard);
+		return false;
+	}
+	public Plugin getPl() {
+		return pl;
+	}
+	public void setPl(Plugin pl) {
+		this.pl = pl;
 	}
 }
