@@ -3,6 +3,7 @@ package fr.doctorwho;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.doctorwho.file.InformationFile;
 import fr.doctorwho.listener.ListenerManager;
 import fr.doctorwho.quetes.QueteManager;
 
@@ -10,6 +11,7 @@ public class Main extends JavaPlugin{
 
 	public static Plugin instance;
 	public static QueteManager queteManager;
+	public static InformationFile informationFile;
 	
 	@Override
 	public void onEnable() {
@@ -20,7 +22,7 @@ public class Main extends JavaPlugin{
 		ListenerManager listener = new ListenerManager(this);
 		listener.register();
 		
-
+		informationFile = new InformationFile();
 	}
 
 	
@@ -32,4 +34,7 @@ public class Main extends JavaPlugin{
 		return queteManager;
 	}
 
+	public static InformationFile getInformationFile() {
+		return informationFile;
+	}
 }

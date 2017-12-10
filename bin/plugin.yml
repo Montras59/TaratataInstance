@@ -1,4 +1,5 @@
 main: fr.doctorwho.Main
-name: DoctorWhoInstance
+name: DoctorWhoPlugin
 version: 1.0 alpha
-authors: [Montras,Lasth]
+authors: [Montras,Lasth,Sekori,attila46]
+depend: [DoctorWhoAPI]
