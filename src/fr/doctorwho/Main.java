@@ -18,14 +18,18 @@ public class Main extends JavaPlugin{
 		instance = this;
 		queteManager = new QueteManager(this);
 		
+		commandsListener()
+		
 		// Event
 		ListenerManager listener = new ListenerManager(this);
 		listener.register();
 		
 		informationFile = new InformationFile();
 	}
-
-	
+	private void commandsListener(){
+		getCommand("updatescoreboard").setExecutor(new updateScoreboardTablist(this));
+		getCommand("lang").setExecutor(new LangSelect(this));
+	}
 	public static Plugin getInstance(){
 		return instance;
 	}
