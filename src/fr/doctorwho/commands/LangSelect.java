@@ -1,4 +1,4 @@
-package fr.attila46.Command;
+package fr.doctorwho.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -30,11 +30,11 @@ public class LangSelect implements CommandExecutor {
 		switch(list[0]){
 			case "fr":
 				//ps.setLang(1);
-				p.sendMessage("§aVous avez choisi la langue française cela à bien été pris en compte.");
+				p.sendMessage("Â§aVous avez choisi la langue franÃ§aise cela Ã  bien Ã©tÃ© pris en compte.");
 				break;
 			case "en":
 				//ps.setLang(2);
-				p.sendMessage("§aYou chose the English language it in well taken into account.");
+				p.sendMessage("Â§aYou chose the English language it in well taken into account.");
 				break;
 			default:
 				messageTellraw(p);
@@ -44,8 +44,8 @@ public class LangSelect implements CommandExecutor {
 	}
 	//message par default
 	private void messageTellraw(Player p){
-		p.sendMessage("§6§nLangue §o(Language)§6§n:");
-		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw "+p.getName()+" [\"\",{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/lang fr\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Langue Française\"}},{\"text\":\"-FR:\",\"color\":\"aqua\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/lang fr\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Langue Française\"}},{\"text\":\"Clic sur ce message si tu veux les textes en français.\",\"color\":\"light_purple\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/lang fr\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Langue Française\"}}]");
+		p.sendMessage("Â§6Â§nLangue Â§o(Language)Â§6Â§n:");
+		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw "+p.getName()+" [\"\",{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/lang fr\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Langue FranÃ§aise\"}},{\"text\":\"-FR:\",\"color\":\"aqua\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/lang fr\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Langue FranÃ§aise\"}},{\"text\":\"Clic sur ce message si tu veux les textes en franÃ§ais.\",\"color\":\"light_purple\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/lang fr\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Langue FranÃ§aise\"}}]");
 		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw "+p.getName()+" [\"\",{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/lang en\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Language English\"}},{\"text\":\"-EN:\",\"color\":\"aqua\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/lang en\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Language English\"}},{\"text\":\"Click on this message if you want texts in English.\",\"color\":\"light_purple\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/lang en\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Language English\"}}]");
 	}
 	public Plugin getPlugin() {
