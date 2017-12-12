@@ -1,4 +1,4 @@
-package fr.attila46.Scoreboard;
+package fr.doctorwho.Scoreboard;
 
 import java.util.HashMap;
 
@@ -11,21 +11,21 @@ import fr.doctorwho.service.PlayerSQL;
 
 
 public enum Translation {	
-	VIDE0(0,"§a","",""),
-	INFO(1,"§e§l§n","Information:",""),
-	VIDE(2,"§d","",""),
-	GRADE(3,"§c§l","Grade:",""),
-	NIVEAU(4,"§c§l","Niveau:",""),
-	PROGRESSION(5,"§c§l","Progression:",""),
-	SERVEUR(6,"§c§l","Serveur:",""),
-	VIDE1(7,"§b","",""),
-	SAISON(8,"§9§l§n","Saison",""),
-	TITRE_SAISON(9,"§a§7§o","",""),
-	QUETE(10,"§9§l","Quête",""),
-	TITRE_QUETE(11,"§7§o","",""),
-	ROLE(12,"§6§l","Rôle:",""),
-	VIDE2(13,"§c","",""),
-	NAME_SERVEUR(14,"§a§l      ","doctorwhorp.fr","");
+	VIDE0(0,"ï¿½a","",""),
+	INFO(1,"ï¿½eï¿½lï¿½n","Information:",""),
+	VIDE(2,"ï¿½d","",""),
+	GRADE(3,"ï¿½cï¿½l","Grade:",""),
+	NIVEAU(4,"ï¿½cï¿½l","Niveau:",""),
+	PROGRESSION(5,"ï¿½cï¿½l","Progression:",""),
+	SERVEUR(6,"ï¿½cï¿½l","Serveur:",""),
+	VIDE1(7,"ï¿½b","",""),
+	SAISON(8,"ï¿½9ï¿½lï¿½n","Saison",""),
+	TITRE_SAISON(9,"ï¿½aï¿½7ï¿½o","",""),
+	QUETE(10,"ï¿½9ï¿½l","Quï¿½te",""),
+	TITRE_QUETE(11,"ï¿½7ï¿½o","",""),
+	ROLE(12,"ï¿½6ï¿½l","Rï¿½le:",""),
+	VIDE2(13,"ï¿½c","",""),
+	NAME_SERVEUR(14,"ï¿½aï¿½l      ","doctorwhorp.fr","");
 	
 	//la ligne dans le scoreboard
 	int ligne;
@@ -48,17 +48,17 @@ public enum Translation {
 		Story s = Story.getStory(p.getUniqueId());
 		//listValue.put(int ligne,String value);
 		value.put(3, " "+ps.getRank().getRankPrefix());
-		value.put(4, "§b§l "+1);
-		value.put(5,"§b§l "+0+"%");
-		value.put(6, "§e§l "+Bukkit.getServerName());
+		value.put(4, "ï¿½bï¿½l "+1);
+		value.put(5,"ï¿½bï¿½l "+0+"%");
+		value.put(6, "ï¿½eï¿½l "+Bukkit.getServerName());
 		value.put(8, " "+1+":");//s.getSaison()
 		value.put(9,"...");
 		value.put(10, " ["+s.getQuete()+"/"+10+"]:");
 		value.put(11,"...");
-		value.put(12, "§d§l "+"...");
+		value.put(12, "ï¿½dï¿½l "+"...");
 		return value;
 	}
-	//liste des lignes à affiché dans le scoreboard en fonction du joueur HashMap<Integer,String> Integer=ligne String=le message de la ligne
+	//liste des lignes ï¿½ affichï¿½ dans le scoreboard en fonction du joueur HashMap<Integer,String> Integer=ligne String=le message de la ligne
 	public static HashMap<Integer, String> getLignes(Player p){
 		HashMap<Integer,String> listValue = getListValue(p);
 		HashMap<Integer,String> result = new HashMap<>();

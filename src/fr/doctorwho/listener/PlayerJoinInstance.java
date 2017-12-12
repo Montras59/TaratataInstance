@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import fr.doctorwho.Main;
+import fr.doctorwho.Scoreboard.Scoreboard;
 import fr.doctorwho.service.PlayerSQL;
 
 public class PlayerJoinInstance implements Listener{
@@ -21,6 +22,9 @@ public class PlayerJoinInstance implements Listener{
 		if(playersql.getQuetes().equalsIgnoreCase("s1ep1q1%0")){
 			player.teleport(new Location(Bukkit.getWorlds().get(0), 100, 100, 100));
 		}
+		
+		// Scoreboard
+		Scoreboard.PlayerUpdate(player);
 		
 		Main.getInformationFile().sendInformationMessage(player);
 	}

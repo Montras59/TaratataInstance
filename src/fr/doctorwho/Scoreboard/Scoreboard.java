@@ -1,4 +1,4 @@
-package fr.attila46.Scoreboard;
+package fr.doctorwho.Scoreboard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Team;
 
-import fr.attila46.Main.Main;
+import fr.doctorwho.Main;
 import fr.doctorwho.enums.EnumRank;
 import fr.doctorwho.service.PlayerSQL;
 import net.md_5.bungee.api.ChatColor;
@@ -27,7 +27,7 @@ public class Scoreboard {
 	private static ArrayList<String> teamNames;
 	public Scoreboard(){
 	}
-	//function pour ajouté tout les joueur du serveur au scoreboard et à la tablist 
+	//function pour ajoutï¿½ tout les joueur du serveur au scoreboard et ï¿½ la tablist 
 	public static void start(){
 		teamTablist = new HashMap<>();
 		teamNames = new ArrayList<>();
@@ -45,13 +45,13 @@ public class Scoreboard {
 			PlayerScoreboard(p);
 		}
 	}
-	//function pour créer ou update le scoreboard et la tablist d'un joueur
+	//function pour crï¿½er ou update le scoreboard et la tablist d'un joueur
 	public static void PlayerUpdate(Player p){
 		PlayerScoreboard(p);
 		PlayerTablist(p);
 	}
-	//A ENLEVER car il va être ajouté à PlayerSQL!
-	//function pour évité de faire deux fois la même requête à la db
+	//A ENLEVER car il va ï¿½tre ajoutï¿½ ï¿½ PlayerSQL!
+	//function pour ï¿½vitï¿½ de faire deux fois la mï¿½me requï¿½te ï¿½ la db
 	public static PlayerSQL getPlayerSQL(Player p){
 		PlayerSQL ps = null;
 		if(PlayerSQL.playersql.containsKey(p)){
@@ -79,21 +79,21 @@ public class Scoreboard {
 		}
 		p.addScoreboardTag(t.getName());
 	}
-	//function pour détruire tout les scoreboards
+	//function pour dï¿½truire tout les scoreboards
 	public static void stop(){
 		for(Entry<Player, ScoreboardSign> p : boards.entrySet()){
 			p.getValue().destroy();
 		}
 		boards.clear();
 	}
-	//function pour détruire le scoreboard du joueur ciblé
+	//function pour dï¿½truire le scoreboard du joueur ciblï¿½
 	public static void PlayerDisconnecte(Player p){
 		if(boards.containsKey(p)){
 			boards.get(p).destroy();
 			boards.remove(p);
 		}
 	}
-	//update ou créer le scoreboard d'un joueur
+	//update ou crï¿½er le scoreboard d'un joueur
 	public static void PlayerScoreboard(Player p){
 		if(!boards.containsKey(p)){
 			createPlayerScoreboard(p);
@@ -105,10 +105,10 @@ public class Scoreboard {
 			sc.setLine(ligne.getKey(), ligne.getValue());
 		}
 	}
-	//function interne crée le scoreboard du joueur ciblé
+	//function interne crï¿½e le scoreboard du joueur ciblï¿½
 	public static boolean createPlayerScoreboard(Player p){
 		if(!boards.containsKey(p)){
-			ScoreboardSign scoreboard = new ScoreboardSign(p, ChatColor.AQUA+"§lDoctorWhoRP");
+			ScoreboardSign scoreboard = new ScoreboardSign(p, ChatColor.AQUA+"ï¿½lDoctorWhoRP");
 			scoreboard.create();
 			boards.put(p, scoreboard);
 			return true;
