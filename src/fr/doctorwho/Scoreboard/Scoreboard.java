@@ -50,24 +50,9 @@ public class Scoreboard {
 		PlayerScoreboard(p);
 		PlayerTablist(p);
 	}
-	//A ENLEVER car il va �tre ajout� � PlayerSQL!
-	//function pour �vit� de faire deux fois la m�me requ�te � la db
-	public static PlayerSQL getPlayerSQL(Player p){
-		PlayerSQL ps = null;
-		if(PlayerSQL.playersql.containsKey(p)){
-			ps = PlayerSQL.getPlayerSQL(p);
-		}else{
-			ps = PlayerSQL.getPlayerSQL(p);
-			if(ps == null){
-				PlayerSQL.createAccount(p);
-				ps = PlayerSQL.getPlayerSQL(p);
-			}
-		}
-		return ps;
-	}
 	//update le nom d'un joueur dans la tablist
 	public static void PlayerTablist(Player p){
-		PlayerSQL ps = getPlayerSQL(p);
+		PlayerSQL ps = PlayerSQL.getPlayerSQL(p);
 		EnumRank r = ps.getRank();
 		p.setPlayerListName(r.getRankPrefix()+p.getDisplayName());
 		System.out.println("testRun");
