@@ -44,7 +44,7 @@ public enum Translation {
 	//liste des valeurs en fonction du joueur HashMap<Integer,String> Integer=ligne String=value
 	private static HashMap<Integer, String> getListValue(Player p){
 		HashMap<Integer,String> value = new HashMap<>();
-		PlayerSQL ps = Scoreboard.getPlayerSQL(p);
+		PlayerSQL ps = PlayerSQL.getPlayerSQL(p);
 		Story s = Story.getStory(p.getUniqueId());
 		//listValue.put(int ligne,String value);
 		value.put(3, " "+ps.getRank().getRankPrefix());
