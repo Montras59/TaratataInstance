@@ -3,6 +3,8 @@ package fr.doctorwho;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.doctorwho.commands.LangSelect;
+import fr.doctorwho.commands.updateScoreboardTablist;
 import fr.doctorwho.file.InformationFile;
 import fr.doctorwho.listener.ListenerManager;
 import fr.doctorwho.quetes.QueteManager;
@@ -18,7 +20,7 @@ public class Main extends JavaPlugin{
 		instance = this;
 		queteManager = new QueteManager(this);
 		
-		commandsListener()
+		commandsListener();
 		
 		// Event
 		ListenerManager listener = new ListenerManager(this);

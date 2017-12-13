@@ -3,3 +3,10 @@ name: DoctorWhoPlugin
 version: 1.0 alpha
 authors: [Montras,Lasth,Sekori,attila46]
 depend: [DoctorWhoAPI]
+commands:
+  updatescoreboard:
+    usage: "Utilisation : /updatescoreboard"
+    description: "Permet de update tout les scoreboards et tablists."
+  lang:
+    usage: "Utilisation : /lang [fr,en]"
+    description: "Permet de choisir sa langue."
