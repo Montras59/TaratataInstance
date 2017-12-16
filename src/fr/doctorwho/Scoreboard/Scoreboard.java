@@ -12,6 +12,7 @@ import org.bukkit.scoreboard.Team;
 
 import fr.doctorwho.Main;
 import fr.doctorwho.enums.EnumRank;
+import fr.doctorwho.service.API;
 import fr.doctorwho.service.PlayerSQL;
 import net.md_5.bungee.api.ChatColor;
 
@@ -80,20 +81,28 @@ public class Scoreboard {
 	}
 	//update ou cr�er le scoreboard d'un joueur
 	public static void PlayerScoreboard(Player p){
-		if(!boards.containsKey(p)){
+		if(boards.get(p) == null || !boards.containsKey(p)){
 			createPlayerScoreboard(p);
 		}
 		ScoreboardSign sc = boards.get(p);
-		HashMap<Integer,String> lignes = new HashMap<>(); 
-		lignes.putAll(Translation.getLignes(p));
-		for(Entry<Integer,String> ligne : lignes.entrySet()){
-			sc.setLine(ligne.getKey(), ligne.getValue());
-		}
+		int lang = PlayerSQL.playersql.get(p).getLang();
+		
+		sc.setLine(1, API.getLang().getMessage("line.scoreboard.information", lang).replaceAll("%separation%", ":"));
+		sc.setLine(3, API.getLang().getMessage("line.scoreboard.rank", lang).replaceAll("%separation%", ":").replaceAll("%rank%", PlayerSQL.playersql.get(p).getRank().getRankPrefix()));
+		sc.setLine(4, API.getLang().getMessage("line.scoreboard.level", lang).replaceAll("%separation%", ":").replaceAll("%level%", 1+""));
+		sc.setLine(5, API.getLang().getMessage("line.scoreboard.progress", lang).replaceAll("%separation%", ":").replaceAll("%progress%", 0+""));
+		sc.setLine(6, API.getLang().getMessage("line.scoreboard.server", lang).replaceAll("%separation%", ":").replaceAll("%server%", Bukkit.getServerName()));
+		sc.setLine(8, API.getLang().getMessage("line.scoreboard.season", lang).replaceAll("%separation%", ":").replaceAll("%season%", 1+""));
+		sc.setLine(9, "...");
+		sc.setLine(10, API.getLang().getMessage("line.scoreboard.quest", lang).replaceAll("%separation%", ":").replaceAll("%quest%", 1+"/" + 10));
+		sc.setLine(11, "...");
+		sc.setLine(12, API.getLang().getMessage("line.scoreboard.role", lang).replaceAll("%separation%", ":"));
+		sc.setLine(14, "§a§l      doctorwhorp.fr");
 	}
 	//function interne cr�e le scoreboard du joueur cibl�
 	public static boolean createPlayerScoreboard(Player p){
 		if(!boards.containsKey(p)){
-			ScoreboardSign scoreboard = new ScoreboardSign(p, ChatColor.AQUA+"�lDoctorWhoRP");
+			ScoreboardSign scoreboard = new ScoreboardSign(p, ChatColor.AQUA+"DoctorWhoRP");
 			scoreboard.create();
 			boards.put(p, scoreboard);
 			return true;

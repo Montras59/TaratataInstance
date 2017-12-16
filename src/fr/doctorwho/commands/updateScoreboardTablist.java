@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import fr.doctorwho.Scoreboard.Scoreboard;
+import fr.doctorwho.service.API;
 import fr.doctorwho.service.PlayerSQL;
 
 public class updateScoreboardTablist implements CommandExecutor {
@@ -24,13 +25,13 @@ public class updateScoreboardTablist implements CommandExecutor {
 		Player p = (Player) sender;
 		PlayerSQL ps = PlayerSQL.getPlayerSQL(p);
 		if(ps.getRank().getPower() < 75){
-			p.sendMessage("§4Vous n'avez pas la permission de exécuter la commande!");
+			p.sendMessage(API.getLang().getMessage("tile.command.nopermission", ps.getLang()));
 			return true;
 		}
 		if(list.length==0){
 			Scoreboard.stop();
 			Scoreboard.start();
-			p.sendMessage("§2Le scoreboard et la tablist on bien été update!");
+			p.sendMessage(API.getLang().getMessage("tile.command.scoreboardupdate", ps.getLang()));
 		}else{
 			
 		}

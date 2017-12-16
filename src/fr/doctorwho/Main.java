@@ -3,7 +3,6 @@ package fr.doctorwho;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.doctorwho.commands.LangSelect;
 import fr.doctorwho.commands.updateScoreboardTablist;
 import fr.doctorwho.file.InformationFile;
 import fr.doctorwho.listener.ListenerManager;
@@ -30,7 +29,6 @@ public class Main extends JavaPlugin{
 	}
 	private void commandsListener(){
 		getCommand("updatescoreboard").setExecutor(new updateScoreboardTablist(this));
-		getCommand("lang").setExecutor(new LangSelect(this));
 	}
 	public static Plugin getInstance(){
 		return instance;
