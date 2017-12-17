@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import fr.doctorwho.Main;
 import fr.doctorwho.Scoreboard.Scoreboard;
+import fr.doctorwho.animation.StartTardisAnimation;
 import fr.doctorwho.service.PlayerSQL;
 
 public class PlayerJoinInstance implements Listener{
@@ -23,9 +24,11 @@ public class PlayerJoinInstance implements Listener{
 			player.teleport(new Location(Bukkit.getWorlds().get(0), 100, 100, 100));
 		}
 		
+		Main.getInformationFile().sendInformationMessage(player);
+		
+		new StartTardisAnimation(player,new Location(Bukkit.getWorlds().get(0), 44, 64, 159));
+		
 		// Scoreboard
 		Scoreboard.PlayerUpdate(player);
-		
-		Main.getInformationFile().sendInformationMessage(player);
 	}
 }
