@@ -1,9 +1,11 @@
 package fr.doctorwho;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.doctorwho.commands.updateScoreboardTablist;
 import fr.doctorwho.file.InformationFile;
 import fr.doctorwho.listener.ListenerManager;
 import fr.doctorwho.quetes.QueteManager;
@@ -26,9 +28,15 @@ public class Main extends JavaPlugin{
 		listener.register();
 		
 		informationFile = new InformationFile();
+		
+		if(Bukkit.getOnlinePlayers().size() == 0) return;
+		
+		for(Player player : Bukkit.getOnlinePlayers()){
+			Bukkit.getPluginManager().callEvent(new PlayerJoinEvent(player, null));
+		}
 	}
 	private void commandsListener(){
-		getCommand("updatescoreboard").setExecutor(new updateScoreboardTablist(this));
+		
 	}
 	public static Plugin getInstance(){
 		return instance;
