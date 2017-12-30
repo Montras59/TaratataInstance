@@ -41,7 +41,7 @@ public class Scoreboard implements Runnable{
 		obj = scoreboard.registerNewObjective("point", "dummy");
 		
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-		obj.setDisplayName("§b§lDoctorWho");
+		obj.setDisplayName("§b§lDoctorWhoRP");
 	}
 	
 	public void initTeam(){
@@ -57,10 +57,10 @@ public class Scoreboard implements Runnable{
 		scores.clear();
 		
 		int tile = 15;
-		addScore(tile--, "§a");
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.Information", lang).replaceAll("%separation%", ":"));
 		addScore(tile--, "§c");
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.rank", lang).replaceAll("%separation%", ":").replaceAll("%rank%", PlayerSQL.playersql.get(player).getRank().getRankPrefix()));
+		addScore(tile--, API.getLang().getMessage("tile.scoreboard.coins", lang).replaceAll("%separation%", ":").replaceAll("%coins%", PlayerSQL.playersql.get(player).getCoins() + ""));
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.level", lang).replaceAll("%separation%", ":").replaceAll("%level%", 1+""));
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.progress", lang).replaceAll("%separation%", ":").replaceAll("%progress%", 0+""));
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.server", lang).replaceAll("%separation%", ":").replaceAll("%server%", Bukkit.getServerName()));
@@ -92,7 +92,8 @@ public class Scoreboard implements Runnable{
 				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.progress", lang).replaceAll("%separation%", ":").replaceAll("%progress%", 0+""))
 				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.season", lang).replaceAll("%separation%", ":").replaceAll("%season%", 1+""))
 				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.quest", lang).replaceAll("%separation%", ":").replaceAll("%quest%", 1+"/" + 10))
-				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.role", lang).replaceAll("%separation%", ":"))){
+				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.role", lang).replaceAll("%separation%", ":"))
+				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.coins", lang).replaceAll("%separation%", ":").replaceAll("%coins%", PlayerSQL.playersql.get(player).getCoins() + ""))){
 			return;
 		}
 		
