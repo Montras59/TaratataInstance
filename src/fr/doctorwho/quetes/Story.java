@@ -11,6 +11,8 @@ public class Story {
 	private UUID uuid;
 	private Saison saison;
 	private Integer quete;
+	private Integer savedPart = 0;
+	private Boolean executeOnJoin = false;
 	
 	public Story(UUID uuid) {
 		setUuid(uuid);
@@ -59,5 +61,20 @@ public class Story {
 		
 		FileUtils.save(file, json);
 		return this;
+	}
+	public Integer getSavedPart() {
+		return savedPart;
+	}
+
+	public void setSavedPart(Integer savedPart) {
+		this.savedPart = savedPart;
+	}
+
+	public Boolean getExecuteOnJoin() {
+		return executeOnJoin;
+	}
+
+	public void setExecuteOnJoin(Boolean executeOnJoin) {
+		this.executeOnJoin = executeOnJoin;
 	}
 }

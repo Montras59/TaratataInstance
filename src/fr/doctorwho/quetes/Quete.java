@@ -2,30 +2,39 @@ package fr.doctorwho.quetes;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
+
 public abstract class Quete {
 
 	private Player p;
 	
 	
-	//Une Quete peux etre en plusieur partie, crée en une nouvelle à chaque évenement
+	//Une Quete peux etre en plusieur partie, crï¿½e en une nouvelle ï¿½ chaque ï¿½venement
 	private Integer part;
 	
 	public Quete(Player p) {
+		Story s = Story.getStory(p.getUniqueId());
 		setPlayer(p);
-		setPart(0);
+		setPart(s.getSavedPart());
 	}
 	
-	//Executer la Quete, Generalement à faire dans les evenements, Integer ex permet à ici un role ID, grace à celle si, vous pourrez
-	//faire en sorte de faire des execution à choix multiple
+	public void setSavedPart(Integer i, Boolean b){
+		Story s = Story.getStory(p.getUniqueId());
+		s.setSavedPart(i);
+		s.setExecuteOnJoin(b);
+		s.save();
+	}
+	//Executer la Quete, Generalement ï¿½ faire dans les evenements, Integer ex permet ï¿½ ici un role ID, grace ï¿½ celle si, vous pourrez
+	//faire en sorte de faire des execution ï¿½ choix multiple
 	public abstract void execute(Integer ex);
 	
-	//Attribuer un Titre à cette Quete
+	//Attribuer un Titre ï¿½ cette Quete
 	public abstract String getTitle();
 	
-	//Attribuer une Description à cette Quete
+	//Attribuer une Description ï¿½ cette Quete
 	public abstract String getDesc();
 
-	//Ceci permet de retourner la location à indiquer au joueur pour réaliser sa quete
+	//Ceci permet de retourner la location ï¿½ indiquer au joueur pour rï¿½aliser sa quete
 	public abstract Location getLocIndicator();
 	
 	public Player getPlayer() {

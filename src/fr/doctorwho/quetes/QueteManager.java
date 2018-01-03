@@ -6,6 +6,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import fr.doctorwho.Main;
 
 public class QueteManager {
 
@@ -57,6 +60,14 @@ public class QueteManager {
 		}
 		Quete quete = new QueteBuilder(player).Build();
 		if(quete!= null){
+			if(story.getExecuteOnJoin() == true){
+				new BukkitRunnable() {				
+					@Override
+					public void run() {
+						quete.execute(42);					
+					}
+				}.runTaskLater(Main.getInstance(), 1);
+			}
 			this.quetesActive.put(player, quete);
 			if(announce){
 				player.sendMessage("");

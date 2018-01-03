@@ -13,8 +13,8 @@ public class Quete2 extends Quete{
 	}
 
 	
-	//Executer la Quete, Generalement à faire dans les evenements, Integer ex permet à ici un role ID, grace à celle si, vous pourrez
-	//faire en sorte de faire des execution à choix multiple
+	//Executer la Quete, Generalement ï¿½ faire dans les evenements, Integer ex permet ï¿½ ici un role ID, grace ï¿½ celle si, vous pourrez
+	//faire en sorte de faire des execution ï¿½ choix multiple
 	@Override
 	public void execute(Integer ex) {
 		
@@ -23,19 +23,19 @@ public class Quete2 extends Quete{
 
 	@Override
 	public String getTitle() {
-		//Attribuer un Titre à cette Quete
+		//Attribuer un Titre ï¿½ cette Quete
 		return "Titre de la Quete 2";
 	}
 
 	@Override
 	public String getDesc() {
-		//Attribuer une Description à cette Quete
+		//Attribuer une Description ï¿½ cette Quete
 		return "Ceci est la description de la Quete 2";
 	}
 
 	@Override
 	public Location getLocIndicator() {
-		//Ceci permet de retourner la location à indiquer au joueur pour réaliser sa quete
+		//Ceci permet de retourner la location ï¿½ indiquer au joueur pour rï¿½aliser sa quete
 		return null;
 	}
 

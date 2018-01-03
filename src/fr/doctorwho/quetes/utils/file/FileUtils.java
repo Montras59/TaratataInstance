@@ -1,4 +1,5 @@
 package fr.doctorwho.quetes.utils.file;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -33,7 +34,7 @@ public class FileUtils {
 		}
 	}
 	
-	//Recuperé le contenu d'un fichier
+	//Recuperï¿½ le contenu d'un fichier
 	public static String loadContant(File file) {
 		
 		if(file.exists()){
