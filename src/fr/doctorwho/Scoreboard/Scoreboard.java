@@ -12,6 +12,7 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import fr.doctorwho.Main;
+import fr.doctorwho.quetes.Quete;
 import fr.doctorwho.service.API;
 import fr.doctorwho.service.PlayerSQL;
 
@@ -66,7 +67,7 @@ public class Scoreboard implements Runnable{
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.server", lang).replaceAll("%separation%", ":").replaceAll("%server%", Bukkit.getServerName()));
 		addScore(tile--, "§e");
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.season", lang).replaceAll("%separation%", ":").replaceAll("%season%", 1+""));
-		addScore(tile--, "§3§l...");
+		addScore(tile--, "§7§l" + getTitleQuest());
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.quest", lang).replaceAll("%separation%", ":").replaceAll("%quest%", 1+"/" + 10));
 		addScore(tile--, "§9§l...");
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.role", lang).replaceAll("%separation%", ":"));
@@ -74,6 +75,11 @@ public class Scoreboard implements Runnable{
 		addScore(tile--, "§a§l      doctorwhorp.fr");
 		
 		player.setScoreboard(scoreboard);
+	}
+	
+	public String getTitleQuest(){
+		if(Quete.playerQuete.get(player) == null) return "...";
+		else return Quete.playerQuete.get(player).getTitle();
 	}
 	
 	public void addScore(int key,String value){
@@ -93,7 +99,8 @@ public class Scoreboard implements Runnable{
 				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.season", lang).replaceAll("%separation%", ":").replaceAll("%season%", 1+""))
 				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.quest", lang).replaceAll("%separation%", ":").replaceAll("%quest%", 1+"/" + 10))
 				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.role", lang).replaceAll("%separation%", ":"))
-				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.coins", lang).replaceAll("%separation%", ":").replaceAll("%coins%", PlayerSQL.playersql.get(player).getCoins() + ""))){
+				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.coins", lang).replaceAll("%separation%", ":").replaceAll("%coins%", PlayerSQL.playersql.get(player).getCoins() + ""))
+				&& scores.containsValue("§7§l" + getTitleQuest())){
 			return;
 		}
 		

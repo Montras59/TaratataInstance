@@ -8,18 +8,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.doctorwho.file.InformationFile;
 import fr.doctorwho.listener.ListenerManager;
-import fr.doctorwho.quetes.QueteManager;
 
 public class Main extends JavaPlugin{
 
 	public static Plugin instance;
-	public static QueteManager queteManager;
 	public static InformationFile informationFile;
 	
 	@Override
 	public void onEnable() {
 		instance = this;
-		queteManager = new QueteManager(this);
 		
 		commandsListener();
 		
@@ -40,10 +37,6 @@ public class Main extends JavaPlugin{
 	}
 	public static Plugin getInstance(){
 		return instance;
-	}
-
-	public static QueteManager getQueteManager() {
-		return queteManager;
 	}
 
 	public static InformationFile getInformationFile() {
