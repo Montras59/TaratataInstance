@@ -6,6 +6,8 @@ import fr.doctorwho.quetes.saison1.Quete1;
 
 public class QueteSaison1 {
 	
+	private String EPISODE1 = "Rose";
+	
 	private Player player;
 	private String queteName;
 	
@@ -16,7 +18,7 @@ public class QueteSaison1 {
 	
 	public void loadQuete(){
 		switch(queteName){
-		case "quete1": new Quete1(player);
+		case "quete1": new Quete1(player,EPISODE1);
 		}
 	}
 

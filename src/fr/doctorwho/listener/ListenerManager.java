@@ -15,5 +15,6 @@ public class ListenerManager {
 	public void register(){
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new PlayerJoinInstance(), plugin);
+		pm.registerEvents(new ArmorStandEvent(), plugin);
 	}
 }

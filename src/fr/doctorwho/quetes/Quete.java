@@ -15,14 +15,16 @@ public abstract class Quete implements Runnable{
 	
 	private BukkitTask task;
 	private Player player;
+	private String episodeName;
 	private String title;
 	private String description;
 	
 	private int part = 1;
 	
-	public Quete(Player player,String title,String description) {
+	public Quete(Player player,String episodeName,String title,String description) {
 		this.player = player;
 		this.title = title;
+		this.episodeName = episodeName;
 		this.description = description;
 		playerQuete.put(player, this);
 		task = Bukkit.getScheduler().runTaskTimer(Main.getInstance(), this, 0, 1);
@@ -70,5 +72,13 @@ public abstract class Quete implements Runnable{
 
 	public void setPart(int part) {
 		this.part = part;
+	}
+
+	public String getEpisodeName() {
+		return episodeName;
+	}
+
+	public void setEpisodeName(String episodeName) {
+		this.episodeName = episodeName;
 	}
 }

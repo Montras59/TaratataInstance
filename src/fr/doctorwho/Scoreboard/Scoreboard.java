@@ -67,9 +67,9 @@ public class Scoreboard implements Runnable{
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.server", lang).replaceAll("%separation%", ":").replaceAll("%server%", Bukkit.getServerName()));
 		addScore(tile--, "§e");
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.season", lang).replaceAll("%separation%", ":").replaceAll("%season%", 1+""));
-		addScore(tile--, "§7§l" + getTitleQuest());
+		addScore(tile--, "§7§l" + getEpisodeName());
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.quest", lang).replaceAll("%separation%", ":").replaceAll("%quest%", 1+"/" + 10));
-		addScore(tile--, "§9§l...");
+		addScore(tile--, "§7§l" + getTitleQuest());
 		addScore(tile--, API.getLang().getMessage("tile.scoreboard.role", lang).replaceAll("%separation%", ":"));
 		addScore(tile--, "§d");
 		addScore(tile--, "§a§l      doctorwhorp.fr");
@@ -77,8 +77,13 @@ public class Scoreboard implements Runnable{
 		player.setScoreboard(scoreboard);
 	}
 	
+	public String getEpisodeName(){
+		if(Quete.playerQuete.get(player) == null) return "§7...";
+		else return Quete.playerQuete.get(player).getEpisodeName();
+	}
+	
 	public String getTitleQuest(){
-		if(Quete.playerQuete.get(player) == null) return "...";
+		if(Quete.playerQuete.get(player) == null) return "§8...";
 		else return Quete.playerQuete.get(player).getTitle();
 	}
 	
@@ -100,7 +105,8 @@ public class Scoreboard implements Runnable{
 				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.quest", lang).replaceAll("%separation%", ":").replaceAll("%quest%", 1+"/" + 10))
 				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.role", lang).replaceAll("%separation%", ":"))
 				&& scores.containsValue(API.getLang().getMessage("tile.scoreboard.coins", lang).replaceAll("%separation%", ":").replaceAll("%coins%", PlayerSQL.playersql.get(player).getCoins() + ""))
-				&& scores.containsValue("§7§l" + getTitleQuest())){
+				&& scores.containsValue("§7§l" + getTitleQuest())
+				&& scores.containsValue("§7§l" + getEpisodeName())){
 			return;
 		}
 		

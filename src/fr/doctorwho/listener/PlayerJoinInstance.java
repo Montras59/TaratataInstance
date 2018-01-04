@@ -17,12 +17,14 @@ public class PlayerJoinInstance implements Listener{
 		Player player = event.getPlayer();
 		PlayerSQL playersql = PlayerSQL.playersql.get(player);
 		
+		if(playersql == null) playersql = PlayerSQL.playersql.put(player, PlayerSQL.getPlayerSQL(player));
+		
 		// Scoreboard
 		new Scoreboard(player).createScoreboard();
 		
 		Main.getInformationFile().sendInformationMessage(player);
 		
 		// Quetes
-		if(playersql.getSeason().equalsIgnoreCase("saison1")) new QueteSaison1(player,playersql.getQuete()).loadQuete();
+		if(playersql.getSeason() == null || playersql.getSeason().equalsIgnoreCase("saison1")) new QueteSaison1(player,playersql.getQuete()).loadQuete();
 	}
 }
