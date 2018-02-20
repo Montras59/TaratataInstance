@@ -42,7 +42,7 @@ public class Scoreboard implements Runnable{
 		obj = scoreboard.registerNewObjective("point", "dummy");
 		
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-		obj.setDisplayName("§b§lDoctorWhoRP");
+		obj.setDisplayName(API.getLang().getMessage("tile.scoreboard.title", lang));
 	}
 	
 	public void initTeam(){
